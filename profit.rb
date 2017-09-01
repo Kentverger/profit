@@ -8,9 +8,9 @@ class Profit < Thor
   option :sell_price, aliases: :s, desc: "Price that you want to sell", type: :numeric
   option :fee, aliases: :f, desc: "Exchenge fee in percentage"
   def profit
-    active_amount = options[:amount] / options[:buy_price]
+    active_amount = options[:amount].to_f / options[:buy_price].to_f
     active_amount_minus_fees = active_amount - (active_amount * 0.01)
-    profit = active_amount_minus_fees * options[:sell_price]
+    profit = active_amount_minus_fees * options[:sell_price].to_f
     profit_minus_fees = profit - (profit * 0.01)
 
     puts "Investment: #{options[:amount]}"
